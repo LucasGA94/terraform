@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s  # Intervalo de scraping
+
+scrape_configs:
+  - job_name: 'libvirt_vm'
+    static_configs:
+      - targets: ['<IP_VM>:9100']  # Reemplaza <IP_VM> con la IP de tu VM de Debian
