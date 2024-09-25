@@ -1,27 +1,17 @@
 terraform {
-   backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "KonigFranxx-Gmhb"
+ cloud { 
+    
+    organization = "KonigFranxx-Gmhb" 
 
-    workspaces {
+    workspaces { 
       name = "infraestructure"
-    }
-  }
-
-  required_providers {
-    libvirt = {
-      source  = "dmacvicar/libvirt"
-      version = "~> 0.6.1"
-    }
-    # Añadiendo un proveedor de Docker para Prometheus
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.0"
     }
   }
 }
 
-
+provider "libvirt" {
+  uri = "qemu:///system"  # Conexión al hipervisor KVM
+}
 
 # Crear el volumen de disco para el sistema operativo
 resource "libvirt_volume" "debian_image" {

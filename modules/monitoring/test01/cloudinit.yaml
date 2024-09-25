@@ -1,0 +1,17 @@
+#cloud-config
+hostname: debian-vm
+ssh_pwauth: true
+users:
+  - name: lucas   # Cambia 'your_user' por el nombre de usuario deseado
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: $6$rounds=4096$ABCDEFGHIJKLMNOPQ$abcdefghijklmn9876EFGH/supersecurehashedpasswordhash
+
+chpasswd:
+  list: |
+    lucas:1234   # Cambia 'your_user' por el nombre del usuario, y '1234' es la contraseña que se establece
+  expire: false
+
+ssh_pwauth: true
